@@ -1,0 +1,24 @@
+{
+  "name": "backpropaganda",
+  "version": "1.0.0",
+  "description": "Single layer perceptron tutorial.",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://gitlab.com/wpmed92/backpropaganda.git"
+  },
+  "keywords": [
+    "deeplearning",
+    "neuralnetworks",
+    "ai"
+  ],
+  "author": "Ahmed Harmouche",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://gitlab.com/wpmed92/backpropaganda/issues"
+  },
+  "homepage": "https://gitlab.com/wpmed92/backpropaganda#readme"
+}
