@@ -45,7 +45,7 @@ class SingleLayerPerceptron {
                 console.log("Error: " + error);
         
                 //Gradient calc
-                for (let k = 0; k < 3; k++) {
+                for (let k = 0; k < this.neuronCount; k++) {
                     let gradient = 2*(output - expectedOutput)*mathUtil.sigmaDeriv(output)*input[k];
                     deltas[k][j] = gradient;
                 }
@@ -54,7 +54,7 @@ class SingleLayerPerceptron {
             //Avaraging gradients
             let avgDelta = [];
         
-            for (let i = 0; i < 3; i++) {
+            for (let i = 0; i < this.neuronCount; i++) {
                 let avg = 0;
         
                 for (let j = 0; j < trainData.length; j++) {
