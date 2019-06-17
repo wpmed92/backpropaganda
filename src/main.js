@@ -1,4 +1,4 @@
-var SingleLayerPerceptron = require("./single-layer-perceptron");
+var SingleLayerPerceptron = require("./lib/single-layer-perceptron");
 let trainData = [[1,0,0],
                  [1,1,1],
                  [0,1,0],
