@@ -5,10 +5,13 @@ class SingleLayerPerceptron {
         this.neuronCount = neuronCount;
         this.weights = [];
         this.input = [];
+        this.weightHistory = [];
 
         for (let i = 0; i < neuronCount; i++) {
             this.weights.push(Math.random(0, 1));
         }
+
+        this.weightHistory.push(this.weights.slice());
     }
 
     createDeltasArray() {
@@ -30,9 +33,6 @@ class SingleLayerPerceptron {
             //Learn from train data
             for (let j = 0; j < trainData.length; j++) {
                 let input = trainData[j];
-
-                //Load input
-                console.log("Input " + input.toString());
                 this.loadInput(input);
 
                 //Activate
@@ -40,9 +40,11 @@ class SingleLayerPerceptron {
 
                 //Error calc
                 let expectedOutput = trainOutput[j];
-                console.log("Expected output: " + expectedOutput, "Actual output: " + output);
                 let error = (output - expectedOutput) * (output - expectedOutput);
-                console.log("Error: " + error);
+
+                if (i%3 == 0) {
+                    console.log("Error: " + error);
+                }
         
                 //Gradient calc
                 for (let k = 0; k < this.neuronCount; k++) {
@@ -64,8 +66,7 @@ class SingleLayerPerceptron {
                 avg /= trainData.length;
                 avgDelta[i] = avg;
             }
-        
-            console.log("Avarage delta " + avgDelta.toString());
+
             this.updateWeights(avgDelta, learnRate);
         }
     }
@@ -75,13 +76,11 @@ class SingleLayerPerceptron {
     }
 
     updateWeights(deltas, lr) {
-        console.log("Pre-update: " + this.weights.toString());
-
         for (let i = 0; i < deltas.length; i++) {
             this.weights[i] -= deltas[i] * lr;
         }
 
-        console.log("Post-update: " + this.weights.toString());
+        this.weightHistory.push(this.weights.slice());
     }
 
     activate() {
