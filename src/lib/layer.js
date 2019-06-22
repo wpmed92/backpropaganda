@@ -4,12 +4,39 @@ class Layer {
     constructor(numNeurons) {
         this.numNeurons = numNeurons;
         this.weights = [];
+        this.biases = [];
         this.input = [];
-        this.output = [];
+        this.activations = [];
+        this.weightedInputs = [];
+        this.errors = [];
+        this.avarageBiasDeltas = [];
+        this.avarageWeightDeltas = [];
     }
     
+    setBiases(biases) {
+        this.biases = biases;
+    }
+
+    updateBiases(deltas) {
+        for (let i = 0; i < this.biases.length; i++) {
+            this.biases[i] -= deltas[i];
+        }
+    }
+
     setWeights(weights) {
         this.weights = weights;
+    }
+
+    updateWeights(deltas) {
+        for (let i = 0; i < this.weights.length; i++) {
+            for (let j = 0; j < this.weights[i].length; j++) {
+                this.weights[i][j] -= deltas[i][j];
+            }
+        }
+    }
+
+    setErrors(errors) {
+        this.errors = errors;
     }
 
     loadInput(input) {
@@ -17,6 +44,9 @@ class Layer {
     }
 
     activate() {
+        let output = [];
+        let sums = [];
+
         for (let i = 0; i < this.weights.length; i++) {
             let sum = 0;
 
@@ -25,9 +55,13 @@ class Layer {
                 sum += weight * this.input[j];
             }
 
-            sum = math.sigma(sum);
-            this.output.push(sum);
+            sum += this.biases[i];
+            sums.push(sum);
+            output.push(math.sigma(sum));
         }
+
+        this.weightedInputs = sums;
+        this.activations = output;
     }
 }
 

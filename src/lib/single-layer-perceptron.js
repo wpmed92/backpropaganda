@@ -6,9 +6,10 @@ class SingleLayerPerceptron {
         this.weights = [];
         this.input = [];
         this.weightHistory = [];
+        this.weightedInput = 0;
 
         for (let i = 0; i < neuronCount; i++) {
-            this.weights.push(Math.random(0, 1));
+            this.weights.push(Math.random() * 0.1);
         }
 
         this.weightHistory.push(this.weights.slice());
@@ -48,7 +49,7 @@ class SingleLayerPerceptron {
         
                 //Gradient calc
                 for (let k = 0; k < this.neuronCount; k++) {
-                    let gradient = 2*(output - expectedOutput)*mathUtil.sigmaDeriv(output)*input[k];
+                    let gradient = (output-expectedOutput)*mathUtil.sigmaDeriv(this.weightedInput)*input[k];
                     deltas[k][j] = gradient;
                 }
             }
@@ -90,6 +91,7 @@ class SingleLayerPerceptron {
             sum += this.input[i] * this.weights[i];    
         }
 
+        this.weightedInput = sum;
         return mathUtil.sigma(sum);
     }
 }

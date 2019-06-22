@@ -5,7 +5,7 @@ var mnist = require('mnist');
 //Train
 let trainData = [];
 let trainOutput = [];
-const SELECTED_DIGIT = 3;
+const SELECTED_DIGIT = 1;
 
 //Test
 let testInput = [];
