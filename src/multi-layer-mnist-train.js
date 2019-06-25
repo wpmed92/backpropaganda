@@ -18,10 +18,12 @@ var TRAINING_SIZE = 8000;
 var TEST_SIZE = 300;
 var trainIterations = 10
 var learningRate = 5;
+var miniBatchSize = 10;
 var set = mnist.set(TRAINING_SIZE, TEST_SIZE);
-network.train(set.training, TRAINING_SIZE, trainIterations, learningRate);
+network.train(set.training, TRAINING_SIZE, trainIterations, learningRate, miniBatchSize);
 
 //Evaluate
+//Exercise: evaluate on training data as well and see the accuracy
 let correct = 0;
 
 for (let i = 0; i < TEST_SIZE; i++) {
