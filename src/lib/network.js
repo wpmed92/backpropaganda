@@ -120,7 +120,7 @@ class Network {
       }
     }
 
-    train(trainData, trainingSize, trainIterations, learnRate) {
+    train(trainData, trainingSize, trainIterations, learnRate, miniBatchSize) {
       for (let i = 0; i < trainIterations; i++) {
         for (let j = 0; j < trainingSize; j++) {
           let input = trainData[j].input;
@@ -133,7 +133,7 @@ class Network {
           //Propagate backward
           this.backprop(output, learnRate);
 
-          if (j%10 != 0) {
+          if (j%miniBatchSize != 0) {
             continue;
           }
 
