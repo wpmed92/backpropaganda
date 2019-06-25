@@ -4,8 +4,6 @@ class Network {
     constructor() {
       this.layers =[];
       this.input = [];
-      this.avarageBiasDeltas = [];
-      this.avarageWeightDeltas = [];
     }
     
     addLayer(layer) {
