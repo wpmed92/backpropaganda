@@ -5,10 +5,14 @@ class SingleLayerPerceptron {
         this.neuronCount = neuronCount;
         this.weights = [];
         this.input = [];
+        this.weightHistory = [];
+        this.weightedInput = 0;
 
         for (let i = 0; i < neuronCount; i++) {
-            this.weights.push(Math.random(0, 1));
+            this.weights.push(Math.random() * 0.1);
         }
+
+        this.weightHistory.push(this.weights.slice());
     }
 
     createDeltasArray() {
@@ -30,9 +34,6 @@ class SingleLayerPerceptron {
             //Learn from train data
             for (let j = 0; j < trainData.length; j++) {
                 let input = trainData[j];
-
-                //Load input
-                console.log("Input " + input.toString());
                 this.loadInput(input);
 
                 //Activate
@@ -40,13 +41,15 @@ class SingleLayerPerceptron {
 
                 //Error calc
                 let expectedOutput = trainOutput[j];
-                console.log("Expected output: " + expectedOutput, "Actual output: " + output);
                 let error = (output - expectedOutput) * (output - expectedOutput);
-                console.log("Error: " + error);
+
+                if (i%3 == 0) {
+                    console.log("Error: " + error);
+                }
         
                 //Gradient calc
                 for (let k = 0; k < this.neuronCount; k++) {
-                    let gradient = 2*(output - expectedOutput)*mathUtil.sigmaDeriv(output)*input[k];
+                    let gradient = (output-expectedOutput)*mathUtil.sigmaDeriv(this.weightedInput)*input[k];
                     deltas[k][j] = gradient;
                 }
             }
@@ -64,8 +67,7 @@ class SingleLayerPerceptron {
                 avg /= trainData.length;
                 avgDelta[i] = avg;
             }
-        
-            console.log("Avarage delta " + avgDelta.toString());
+
             this.updateWeights(avgDelta, learnRate);
         }
     }
@@ -75,13 +77,11 @@ class SingleLayerPerceptron {
     }
 
     updateWeights(deltas, lr) {
-        console.log("Pre-update: " + this.weights.toString());
-
         for (let i = 0; i < deltas.length; i++) {
             this.weights[i] -= deltas[i] * lr;
         }
 
-        console.log("Post-update: " + this.weights.toString());
+        this.weightHistory.push(this.weights.slice());
     }
 
     activate() {
@@ -91,6 +91,7 @@ class SingleLayerPerceptron {
             sum += this.input[i] * this.weights[i];    
         }
 
+        this.weightedInput = sum;
         return mathUtil.sigma(sum);
     }
 }

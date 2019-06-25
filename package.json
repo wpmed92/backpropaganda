@@ -20,5 +20,9 @@
   "bugs": {
     "url": "https://gitlab.com/wpmed92/backpropaganda/issues"
   },
-  "homepage": "https://gitlab.com/wpmed92/backpropaganda#readme"
+  "homepage": "https://gitlab.com/wpmed92/backpropaganda#readme",
+  "dependencies": {
+    "jimp": "^0.6.4",
+    "mnist": "^1.1.0"
+  }
 }
