@@ -66,6 +66,8 @@ Promise.all(visualTasks).then(() => {
     console.log("Oops, something went wrong generating weight frames: " + error);
 });*/
 
+network.save("mnist-net-test");
+
 console.log("---Net report---")
 console.log("-dataset: MNIST");
 console.log("-trainIterations: " + trainIterations);

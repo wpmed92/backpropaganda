@@ -46,3 +46,5 @@ for (let i = 0; i < TRAINING_SIZE; i++) {
     console.log("Expected: " + set[i].output + ", activation: " + test);
 }
 
+network.save("xor");
+
