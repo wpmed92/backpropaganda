@@ -1,4 +1,6 @@
 var util = require("./util");
+var Layer = require("./layer");
+var fs = require("fs");
 
 class Network {
     constructor() {
@@ -49,6 +51,35 @@ class Network {
       }
 
       return this.layers[this.layers.length-1].activations;
+    }
+
+    load(filename) {
+      var net = JSON.parse(fs.readFileSync("nets/" + filename + ".json", 'utf8'));
+      this.layers = [];
+      
+      for (let i = 0; i < net.layers.length; i++) {
+        let layer = Object.assign(new Layer, net.layers[i]);
+        this.layers.push(layer);
+      }
+    }
+
+    save(filename) {
+      let layers = this.layers.map(layer => { return { numNeurons: layer.numNeurons, weights: layer.weights, biases: layer.biases }});
+      let model = {
+        layers: layers
+      };
+
+      if (!fs.existsSync('nets/')) {
+        fs.mkdirSync('nets/');
+      }
+
+      fs.writeFile('nets/' + filename + ".json", JSON.stringify(model), function(err) {
+        if (err) {
+          throw "Error saving network '" + filename + ".json'.";
+        }
+
+        console.log("Network '" + filename + ".json' successfully saved.")
+      });
     }
 
     backprop(expectedOutput, learnRate) {
