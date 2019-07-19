@@ -4,7 +4,7 @@ networks with it, and study how they work at a low-level. There are many differe
 use them, the most common is to start with [TensorFlow](https://github.com/tensorflow/tensorflow). While this might be suitable for most people there are some developers who
 like to build things from scratch to really understand how they work. If you are one of them, this project is for you.
 
-# Installation
+## Installation
 
 Clone this repo:
 
@@ -12,13 +12,13 @@ Clone this repo:
 
 Use the library and experiment.
 
-# Train a network to solve the XOR problem
+## Train a network to solve the XOR problem
 
 To run the example type the following in the terminal.
 
 `node src/multi-layer-xor-train.js`
 
-## Code walkthrough:
+### Code walkthrough:
 
 Require the library.
 
@@ -97,3 +97,13 @@ Save the network if you want. `network.save()` will create a "nets" folder (giti
 ```javascript
 network.save("xor");
 ```
+
+## Contribution
+
+Feel free to add fixes, improvements or new features to the codebase.
+Here are some features I'd like to add:
+
+* More activation functions. Currently sigmoid is supported.
+* More cost functions. Currently Mean Square Error is supported.
+* Draw things in CLI: learning curves, stats
+* Use backpropaganda as a CLI tool
