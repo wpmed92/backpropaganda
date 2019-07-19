@@ -54,6 +54,10 @@ var genMatrix = function(row, col) {
     return [...Array(row)].map(x=>Array(col).fill(0));
 }
 
+var randomInRange = function(min, max) {
+    return Math.random() * (max - min) + min; 
+}
+
 module.exports = {
     sigma: sigma,
     sigmaDeriv: sigmaDeriv,
@@ -61,5 +65,6 @@ module.exports = {
     hadamard: hadamard,
     matTranspose: matTranspose,
     argMax: argMax,
-    genMatrix: genMatrix
+    genMatrix: genMatrix,
+    randomInRange: randomInRange
 }
