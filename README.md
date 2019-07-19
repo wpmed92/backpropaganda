@@ -14,6 +14,12 @@ Use the library and experiment.
 
 # Train a network to solve the XOR problem
 
+To run the example type the following in the terminal.
+
+`node src/multi-layer-xor-train.js`
+
+## Code walkthrough:
+
 Require the library.
 
 ```javascript
