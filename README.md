@@ -202,6 +202,19 @@ console.log("-Training accuracy: " + trainingCorrect + "/" + TRAINING_SIZE + ", 
 console.log("-Test accuracy: " + testCorrect + "/" + TEST_SIZE + ", " + testCorrect/TEST_SIZE*100 + "%");
 ```
 
+## Weight visualization
+
+There is an experimental weight visualizer, which saves a given weight matrix into an image.
+
+```javascript
+let weightVisualizer = new WeightVisualizer(weights, VISUALIZER_MODE.RAINBOW);
+weightVisualizer.generateImage(id);
+```
+
+Here is an example gif created from weight images saved during the training process. See how the trained digit (a "1") starts taking shape.
+
+![Weight evolution](https://github.com/wpmed92/backpropaganda/blob/master/weight_evolution.gif)
+
 ## Contribution
 
 Feel free to add fixes, improvements or new features to the codebase.
