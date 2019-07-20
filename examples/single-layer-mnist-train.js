@@ -1,5 +1,5 @@
-var SingleLayerPerceptron = require("./lib/single-layer-perceptron");
-var { WeightVisualizer, VISUALIZER_MODE } = require('./lib/weight-visualizer');
+var SingleLayerPerceptron = require("../lib/single-layer-perceptron");
+var { WeightVisualizer, VISUALIZER_MODE } = require('../lib/weight-visualizer');
 var mnist = require('mnist');
 
 //Train

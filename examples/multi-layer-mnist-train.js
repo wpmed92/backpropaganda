@@ -1,6 +1,6 @@
-var Layer = require('./lib/layer');
-var Network = require('./lib/network');
-var util = require('./lib/util');
+var Layer = require('../lib/layer');
+var Network = require('../lib/network');
+var util = require('../lib/util');
 var mnist = require('mnist');
 var activations = require('./lib/activations');
 

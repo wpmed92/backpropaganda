@@ -1,5 +1,5 @@
-var Network = require('./lib/network');
-var util = require('./lib/util');
+var Network = require('../lib/network');
+var util = require('../lib/util');
 var mnist = require('mnist');
 
 //xor net test

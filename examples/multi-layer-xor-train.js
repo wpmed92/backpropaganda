@@ -1,6 +1,6 @@
-var Layer = require('./lib/layer');
-var Network = require('./lib/network');
-var activations = require('./lib/activations');
+var Layer = require('../lib/layer');
+var Network = require('../lib/network');
+var activations = require('../lib/activations');
 
 let network = new Network();
 
