@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://gitlab.com/wpmed92/backpropaganda.git"
+    "url": "git+https://github.com/wpmed92/backpropaganda.git"
   },
   "keywords": [
     "deeplearning",
@@ -18,9 +18,9 @@
   "author": "Ahmed Harmouche",
   "license": "ISC",
   "bugs": {
-    "url": "https://gitlab.com/wpmed92/backpropaganda/issues"
+    "url": "https://github.com/wpmed92/backpropaganda/issues"
   },
-  "homepage": "https://gitlab.com/wpmed92/backpropaganda#readme",
+  "homepage": "https://github.com/wpmed92/backpropaganda#readme",
   "dependencies": {
     "chance": "^1.0.18",
     "jimp": "^0.6.4",
