@@ -6,6 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "bin": {
+    "backpropaganda": "./index.js"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/wpmed92/backpropaganda.git"
@@ -23,6 +26,10 @@
   "homepage": "https://github.com/wpmed92/backpropaganda#readme",
   "dependencies": {
     "chance": "^1.0.18",
+    "blessed": "^0.1.81",
+    "blessed-contrib": "^4.8.16",
+    "commander": "^2.20.0",
+    "figlet": "^1.2.3",
     "jimp": "^0.6.4",
     "mnist": "^1.1.0"
   }
