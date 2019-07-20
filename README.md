@@ -8,6 +8,7 @@ like to build things from scratch to really understand how they work. If you are
 **[Installation](#installation)**<br>
 **[Solving the XOR problem](#solving-the-xor-problem)**<br>
 **[Recognizing handwritten digits](#recognizing-handwritten-digits)**<br>
+**[Weight visualization](#weight-visualization)**<br>
 **[Contribution](#contribution)**<br>
 
 ## Installation
@@ -112,6 +113,8 @@ Feel free to play around with other architectures, and see if they are better/wo
 To run the example type the following in the terminal.
 
 `node src/multi-layer-mnist-train.js`
+
+### Code walkthrough:
 
 Require the libraries.
 
