@@ -30,6 +30,7 @@
     "blessed-contrib": "^4.8.16",
     "commander": "^2.20.0",
     "figlet": "^1.2.3",
+    "inquirer": "^6.5.0",
     "jimp": "^0.6.4",
     "mnist": "^1.1.0"
   }
