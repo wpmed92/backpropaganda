@@ -18,9 +18,9 @@ network.setup();
 //Train
 var TRAINING_SIZE = 8000;
 var TEST_SIZE = 300;
-var trainIterations = 20
+var trainIterations = 15
 var learningRate = 5;
-var miniBatchSize = 32;
+var miniBatchSize = 64;
 var set = mnist.set(TRAINING_SIZE, TEST_SIZE);
 network.train(set.training, TRAINING_SIZE, trainIterations, learningRate, miniBatchSize);
 

@@ -35,12 +35,12 @@ class ReLU extends Activation {
     "\n" + 
     "Activation:\n" +
     "-----------\n" +
-    "𝑓(𝑥)={ 0 if 𝑥 < 0 \n" + 
+    "𝑓(𝑥)={ 0 if 𝑥 <= 0 \n" + 
     "       x if 𝑥 > 0 }\n" +
     "\n" +
     "Derivation:\n" +
     "-----------\n" +
-    "𝑓'(𝑥)={ 0 if 𝑥 < 0 \n" + 
+    "𝑓'(𝑥)={ 0 if 𝑥 <= 0 \n" + 
     "       1 if 𝑥 > 0 }\n"
     );
   }
@@ -67,12 +67,12 @@ class LeakyReLU extends Activation {
     "Activation:\n" +
     "-----------\n" +
     "Same as ReLU, but enable a small gradient 'a' if x < 0\n" + 
-    "𝑓(𝑥)={ax if 𝑥 < 0 \n" + 
+    "𝑓(𝑥)={ax if 𝑥 <= 0 \n" + 
     "       x if 𝑥 > 0 }\n" +
     "\n" +
     "Derivation:\n" +
     "-----------\n" +
-    "𝑓'(𝑥)={ a if 𝑥 < 0 \n" + 
+    "𝑓'(𝑥)={ a if 𝑥 <= 0 \n" + 
     "        1 if 𝑥 > 0 }\n"
     );
   }
@@ -92,7 +92,17 @@ class Sigmoid extends Activation {
   }
 
   print() {
-    console.log("TODO");
+    console.log(
+      "Sigmoid activation function.\n" +
+      "\n" + 
+      "Activation:\n" +
+      "-----------\n" +
+      "𝑓(𝑥)=1/(1+e^(-x)) \n" + 
+      "\n" +
+      "Derivation:\n" +
+      "-----------\n" +
+      "𝑓'(𝑥)= 𝑓(𝑥) * (1 - 𝑓(𝑥)) \n" +
+      "");
   }
 }
 

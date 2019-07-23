@@ -2,6 +2,8 @@ var util = require("./util");
 var Layer = require("./layer");
 var fs = require("fs");
 var activations = require("./activations");
+var Chance = require("chance");
+const chance = new Chance();
 
 class Network {
     constructor() {
@@ -19,14 +21,14 @@ class Network {
           let prevLayer = this.layers[i-1];
           let weights = [];
           let biases = [];
-          const randomFactor = 1/Math.sqrt(prevLayer.numNeurons);
+          const deviation = Math.sqrt(1/prevLayer.numNeurons); //Xavier
 
           for (let j = 0; j < layer.numNeurons; j++) {
             let row = [];
             biases.push(0);
 
             for (let k = 0; k < prevLayer.numNeurons; k++) {
-              row.push(util.randomInRange(-randomFactor, randomFactor));
+              row.push(chance.normal({mean: 0, dev: deviation}));
             }
             
             weights.push(row);

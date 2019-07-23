@@ -22,6 +22,7 @@
   },
   "homepage": "https://gitlab.com/wpmed92/backpropaganda#readme",
   "dependencies": {
+    "chance": "^1.0.18",
     "jimp": "^0.6.4",
     "mnist": "^1.1.0"
   }

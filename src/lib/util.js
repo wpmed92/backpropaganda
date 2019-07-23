@@ -48,11 +48,20 @@ var randomInRange = function(min, max) {
     return Math.random() * (max - min) + min; 
 }
 
+var arrShuffle = function(a) {
+    for (let i = a.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [a[i], a[j]] = [a[j], a[i]];
+    }
+    return a;
+}
+
 module.exports = {
     vecSub: vecSub,
     hadamard: hadamard,
     matTranspose: matTranspose,
     argMax: argMax,
     genMatrix: genMatrix,
-    randomInRange: randomInRange
+    randomInRange: randomInRange,
+    arrShuffle: arrShuffle
 }
