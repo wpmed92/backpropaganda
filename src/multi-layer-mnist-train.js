@@ -8,7 +8,8 @@ let network = new Network();
 
 //Build
 network.addLayer(new Layer(784)); //input
-network.addLayer(new Layer(30, new activations.leakyRelu(0.01))); //hidden layer
+network.addLayer(new Layer(16, new activations.sigmoid())); //hidden layer
+network.addLayer(new Layer(16, new activations.sigmoid())); //hidden layer
 network.addLayer(new Layer(10, new activations.sigmoid())); //output layer
 
 //Init
@@ -17,9 +18,9 @@ network.setup();
 //Train
 var TRAINING_SIZE = 8000;
 var TEST_SIZE = 300;
-var trainIterations = 15
-var learningRate = 0.1;
-var miniBatchSize = 100;
+var trainIterations = 20
+var learningRate = 5;
+var miniBatchSize = 32;
 var set = mnist.set(TRAINING_SIZE, TEST_SIZE);
 network.train(set.training, TRAINING_SIZE, trainIterations, learningRate, miniBatchSize);
 
