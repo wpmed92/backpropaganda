@@ -1,11 +1,12 @@
 var math = require('./util');
 
 class Layer {
-    constructor(numNeurons) {
+    constructor(numNeurons, activationFunction) {
         this.numNeurons = numNeurons;
         this.weights = [];
         this.biases = [];
         this.input = [];
+        this.activationFunction = activationFunction;
         this.activations = [];
         this.weightedInputs = [];
         this.errors = [];
@@ -57,7 +58,7 @@ class Layer {
 
             sum += this.biases[i];
             sums.push(sum);
-            output.push(math.sigma(sum));
+            output.push(this.activationFunction.act(sum));
         }
 
         this.weightedInputs = sums;

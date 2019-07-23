@@ -1,13 +1,13 @@
 var Layer = require('./lib/layer');
 var Network = require('./lib/network');
-var util = require('./lib/util');
+var activations = require('./lib/activations');
 
 let network = new Network();
 
 //Build
 network.addLayer(new Layer(2)); //input
-network.addLayer(new Layer(2)); //hidden layer
-network.addLayer(new Layer(1)); //output layer
+network.addLayer(new Layer(2, new activations.sigmoid())); //hidden layer
+network.addLayer(new Layer(1, new activations.sigmoid())); //output layer
 
 var set = [
     {
@@ -38,6 +38,7 @@ var learningRate = 10;
 var miniBatchSize = 4;
 
 network.train(set, TRAINING_SIZE, trainIterations, learningRate, miniBatchSize);
+network.layout();
 
 //Evaluate
 for (let i = 0; i < TRAINING_SIZE; i++) {

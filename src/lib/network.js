@@ -1,6 +1,9 @@
 var util = require("./util");
 var Layer = require("./layer");
 var fs = require("fs");
+var activations = require("./activations");
+var Chance = require("chance");
+const chance = new Chance();
 
 class Network {
     constructor() {
@@ -18,14 +21,14 @@ class Network {
           let prevLayer = this.layers[i-1];
           let weights = [];
           let biases = [];
-          const randomFactor = 1/Math.sqrt(prevLayer.numNeurons);
+          const deviation = Math.sqrt(1/prevLayer.numNeurons); //Xavier
 
           for (let j = 0; j < layer.numNeurons; j++) {
             let row = [];
             biases.push(0);
 
             for (let k = 0; k < prevLayer.numNeurons; k++) {
-              row.push(util.randomInRange(-randomFactor, randomFactor));
+              row.push(chance.normal({mean: 0, dev: deviation}));
             }
             
             weights.push(row);
@@ -59,13 +62,28 @@ class Network {
       this.layers = [];
       
       for (let i = 0; i < net.layers.length; i++) {
+        let layerObj = net.layers[i];
+        
+        if (i > 0) {
+          layerObj.activationFunction = Object.assign(new activations[layerObj.activationFunction.type], layerObj.activationFunction);
+        }
+
         let layer = Object.assign(new Layer, net.layers[i]);
         this.layers.push(layer);
       }
     }
 
     save(filename) {
-      let layers = this.layers.map(layer => { return { numNeurons: layer.numNeurons, weights: layer.weights, biases: layer.biases }});
+      let layers = this.layers.map(layer => { 
+          return { 
+            numNeurons: layer.numNeurons,
+            weights: layer.weights, 
+            biases: layer.biases,
+            activationFunction: layer.activationFunction
+          }
+        }
+      );
+
       let model = {
         layers: layers
       };
@@ -83,6 +101,19 @@ class Network {
       });
     }
 
+    layout() {
+      let networkStructure = "Network: ";
+      let weightStructure = "Weight shapes: ";
+
+      for (let i = 0; i < this.layers.length; i++) {
+        let layer = this.layers[i];
+        networkStructure += layer.numNeurons + ((i > 0) ? "(" + layer.activationFunction.type + ")" : "") + ((i < this.layers.length - 1) ? " -> " : "");
+        weightStructure += ((i == 0) ? "(input layer, no weights)" : this.layers[i].numNeurons + "x" + this.layers[i-1].numNeurons) + ((i < this.layers.length - 1) ? " -> " : "");
+      }
+
+      console.log(networkStructure + "\n" + weightStructure);
+    }
+
     backprop(expectedOutput, learnRate) {
       //First equation: (aL - y) o sigma'(zL)
       let outputLayer = this.layers[this.layers.length-1];
@@ -90,7 +121,7 @@ class Network {
       let activationDeriv = [];
 
       for (let j = 0; j < outputLayer.weightedInputs.length; j++) {
-        let deriv = util.sigmaDeriv(outputLayer.weightedInputs[j]);
+        let deriv = outputLayer.activationFunction.deriv(outputLayer.weightedInputs[j]);
         activationDeriv.push(deriv);
       }
 
@@ -119,7 +150,7 @@ class Network {
 
         //Activation deriv
         for (let j = 0; j < curLayer.weightedInputs.length; j++) {
-          let deriv = util.sigmaDeriv(curLayer.weightedInputs[j]);
+          let deriv = curLayer.activationFunction.deriv(curLayer.weightedInputs[j]);
           activationDeriv.push(deriv);
         }
 
