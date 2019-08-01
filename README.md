@@ -1,4 +1,4 @@
-[![license](https://img.shields.io/github/license/wpmed92/backpropaganda)](https://github.com/wpmed92/backpropaganda/blob/master/README.md)
+[![license](https://img.shields.io/github/license/wpmed92/backpropaganda)](https://github.com/wpmed92/backpropaganda/blob/master/LICENSE)
 
 # backpropaganda
 backpropaganda is a JavaScript neural network framework for educational purposes. You can build multi layer feed-forward neural
