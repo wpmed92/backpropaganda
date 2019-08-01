@@ -11,7 +11,7 @@ class Activation {
     throw new Error("method 'act' must be implemented in an Activation subclass.");
   }
 
-  print() {
+  static print() {
     throw new Error("method 'print' must be implemented in an Activation subclass.");
   }
 }
@@ -29,7 +29,7 @@ class ReLU extends Activation {
     return (x > 0) ? 1 : 0;
   }
 
-  print() {
+  static print() {
     console.log(
     "ReLU activation function.\n" +
     "\n" + 
@@ -60,7 +60,7 @@ class LeakyReLU extends Activation {
     return (x > 0) ? 1 : this.leak;
   }
 
-  print() {
+  static print() {
     console.log(
     "Leaky ReLU activation function.\n" +
     "\n" + 
@@ -91,7 +91,7 @@ class Sigmoid extends Activation {
     return this.act(x) * (1 - this.act(x));
   }
 
-  print() {
+  static print() {
     console.log(
       "Sigmoid activation function.\n" +
       "\n" + 
@@ -106,8 +106,28 @@ class Sigmoid extends Activation {
   }
 }
 
+
+class Tanh extends Activation {
+    constructor() {
+      super("tanh");
+    }
+
+    act(x) {
+      return (Math.pow(Math.E, 2*x) - 1) / (Math.pow(Math.E, 2*x) + 1);
+    }
+
+    deriv(x) {
+      return 1 - this.act(x) * this.act(x);
+    }
+
+    static print() {
+      console.log("TODO");
+    }
+}
+
 module.exports = {
   relu: ReLU,
   leakyRelu: LeakyReLU,
-  sigmoid: Sigmoid
+  sigmoid: Sigmoid,
+  tanh: Tanh
 }
